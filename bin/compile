@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+[ $VERBOSE ] && set -x
 set -e
 
 function indent() {
@@ -13,8 +13,7 @@ function indent() {
 unset GIT_DIR
 
 for BUILDPACK in $(cat $1/.buildpacks); do
-  dir=$(mktemp -t buildpackXXXXX)
-  rm -rf $dir
+  dir="$(mktemp -d -t buildpackXXXXX)"
 
   url=${BUILDPACK%#*}
   branch=${BUILDPACK#*#}
@@ -27,7 +26,6 @@ for BUILDPACK in $(cat $1/.buildpacks); do
     echo "=====> Downloading Buildpack: $url"
 
     if [[ "$url" =~ \.tgz$ ]]; then
-      mkdir -p "$dir"
       curl -s "$url" | tar xvz -C "$dir" >/dev/null 2>&1
     else
       git clone $url $dir >/dev/null 2>&1

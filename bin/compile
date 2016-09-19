@@ -12,7 +12,7 @@ function indent() {
 
 unset GIT_DIR
 
-for BUILDPACK in $(cat $1/.buildpacks); do
+for BUILDPACK in $(grep -v ^# $1/.buildpacks); do
   dir="$(mktemp -d -t buildpackXXXXX)"
 
   url=${BUILDPACK%#*}

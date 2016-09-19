@@ -1,15 +1,18 @@
-# heroku-buildpack-multi
+# cf-buildpack-multi
 
 Use multiple buildpacks on your app
 
 ## Usage
 
-    $ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
-
     $ cat .buildpacks
-    https://github.com/heroku/heroku-buildpack-nodejs.git#0198c71daa8
-    https://github.com/heroku/heroku-buildpack-ruby.git#v86
+    https://github.com/cloudfoundry/nodejs-buildpack#v1.5.19
+    https://github.com/cloudfoundry/ruby-buildpack#v1.6.24
+
+    $ cf push -b https://bitbucket.org/cf-utilities/cf-buildpack-multi
 
 ## License
 
-MIT
+Originally imported from https://github.com/ddollar/heroku-buildpack-multi with
+a MIT license @ commit `331b0277c8b091fb3580a543e18ad5f1fe4532f5`.
+
+Subsequent modifications licensed under the GPL, version 3 or later.

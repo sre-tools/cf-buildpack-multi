@@ -59,7 +59,8 @@ for BUILDPACK in $(grep -v ^# $1/.buildpacks); do
       fi
 
       if [ -x $dir/bin/release ]; then
-        $dir/bin/release $1 > $1/last_pack_release.out
+        $dir/bin/release $1 > $1/current_pack_release.out
+        mv $1/current_pack_release.out $1/last_pack_release.out
       fi
     fi
   fi

@@ -12,6 +12,8 @@ function indent() {
 
 unset GIT_DIR
 
+ln -s /tmp/ /tmp/staged 2>/dev/null || true
+
 for BUILDPACK in $(grep -v ^# $1/.buildpacks); do
   dir="$(mktemp -d -t buildpackXXXXX)"
 

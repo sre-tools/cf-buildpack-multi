@@ -34,11 +34,7 @@ for BUILDPACK in $(grep -v ^# $1/.buildpacks); do
     if [[ "$url" =~ \.tgz$ ]]; then
       curl -s "$url" | tar xvz -C "$dir" >/dev/null 2>&1
     else
-      git clone $url $dir >/dev/null 2>&1
-      if [ -f "$dir/.gitmodules" ]; then
-        echo "=====> Detected git submodules. Initializing..."
-        (cd $dir && git submodule update --init --recursive)
-      fi
+      git clone --recursive $url $dir >/dev/null 2>&1
     fi
     cd $dir
 

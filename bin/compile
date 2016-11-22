@@ -37,7 +37,8 @@ for BUILDPACK in $(grep -v ^# $1/.buildpacks); do
       git clone --recursive $url $dir >/dev/null 2>&1
 
       if [ "$branch" != "" ]; then
-        git checkout $branch >/dev/null 2>&1
+        echo "=====> Checking Out Branch: $branch"
+        (cd $dir && git checkout $branch)
       fi
 
       if [ -f "$dir/.gitmodules" ]; then

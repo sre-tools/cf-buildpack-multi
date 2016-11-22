@@ -15,6 +15,10 @@ unset GIT_DIR
 ln -s /tmp/ /tmp/staged 2>/dev/null || true
 
 for BUILDPACK in $(grep -v ^# $1/.buildpacks); do
+  if [[ "$BUILDPACK" =~ cf\-buildpack\-multi ]]; then
+    continue
+  fi
+
   dir="$(mktemp -d -t buildpackXXXXX)"
 
   url=${BUILDPACK%#*}
